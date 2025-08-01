@@ -3,71 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SlowLow999 - Personal Page</title>
+    <title>UltraZartrex (SlowLow999) - Security Researcher</title>
+    <!-- Using Tailwind CSS for a modern, responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Using Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Applying the fonts and a subtle animation */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            background-color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark gray background */
+            color: #E5E7EB; /* Light gray text */
+            opacity: 0;
+            animation: fadeIn 1s forwards;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
-        header {
-            text-align: center;
-            padding: 4rem 0;
-            background-color: #2c3e50;
-            color: white;
+        h1, h2, h3 {
+            font-family: 'JetBrains Mono', monospace;
         }
-        .profile-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-top: -2rem;
-        }
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        .social-links {
-            margin-top: 1.5rem;
-        }
-        .social-links a {
-            color: #3498db;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        .social-links a:hover {
-            text-decoration: underline;
+        .glow-text {
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>SlowLow999</h1>
-            <p>Welcome to my personal page</p>
-        </div>
-    </header>
+<body class="antialiased">
 
-    <div class="container">
-        <div class="profile-section">
-            <h2>About Me</h2>
-            <p>Hey there! I'm SlowLow999. This is my personal GitHub Page where I share my journey and projects.</p>
-            
-            <h2>Projects</h2>
-            <p>Check out my repositories on GitHub to see what I'm working on!</p>
+    <!-- Main container -->
+    <div class="container mx-auto max-w-4xl px-4 py-8 md:py-16">
 
-            <div class="social-links">
-                <a href="https://github.com/SlowLow999" target="_blank">GitHub Profile</a>
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-blue-400 glow-text">UltraZartrex</h1>
+            <p class="text-lg text-gray-400 mt-2">(SlowLow999)</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Left Column: Bio and Social Links -->
+            <div class="md:col-span-2 bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+                <h2 class="text-2xl font-bold text-white mb-4">About Me</h2>
+                <div class="space-y-4 text-gray-300">
+                    <p>
+                        Hey, I'm Ahmed Rayane Elouali, but you can call me UltraZartrex. I'm a hacker and security researcher who's fascinated by how systems work—and even more fascinated by how they break. I spend my time poking at AI code interpreters and other sandboxes, always looking for those subtle flaws that lead to big things, like the arbitrary code execution vulnerabilities I've found.
+                    </p>
+                    <p>
+                        I'm probably best known for creating the first one-shot jailbreak for Sonnet 4. My latest deep dive involved a full exploit chain that uncovered a critical cross-tenant data leak in a major AI platform.
+                    </p>
+                </div>
+                
+                <!-- Social Links with Icons -->
+                <div class="mt-6 flex items-center space-x-6">
+                    <h3 class="text-lg font-semibold text-white">Connect:</h3>
+                    <a href="https://github.com/SlowLow999/UltraBr3aks" target="_blank" class="flex items-center text-gray-300 hover:text-blue-400 transition-colors">
+                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+                        GitHub
+                    </a>
+                    <span class="text-gray-600">|</span>
+                    <div class="flex items-center text-gray-300">
+                         <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.36981C18.883 3.4949 17.265 2.88385 15.528 2.59681C15.423 2.84883 15.331 3.14986 15.26 3.4949C13.642 3.24288 12.076 3.24288 10.51 3.4949C10.439 3.14986 10.347 2.84883 10.242 2.59681C8.505 2.88385 6.887 3.4949 5.453 4.36981C1.564 9.11779 1.223 13.7658 2.325 18.2008C4.012 19.6438 5.75 20.6338 7.538 21.1478C7.942 20.6338 8.315 20.0608 8.646 19.4448C8.013 19.1438 7.411 18.7838 6.852 18.3758C6.967 18.3168 7.071 18.2468 7.175 18.1768C10.283 19.4448 13.642 19.4448 16.587 18.1768C16.691 18.2468 16.795 18.3168 16.91 18.3758C16.351 18.7838 15.749 19.1438 15.116 19.4448C15.447 20.0608 15.82 20.6338 16.224 21.1478C17.991 20.6338 19.748 19.6438 21.435 18.2008C22.59 13.5118 22.186 8.94179 20.317 4.36981ZM8.646 16.2088C7.807 16.2088 7.134 15.4798 7.134 14.5768C7.134 13.6738 7.807 12.9448 8.646 12.9448C9.485 12.9448 10.158 13.6738 10.158 14.5768C10.158 15.4798 9.485 16.2088 8.646 16.2088ZM15.116 16.2088C14.277 16.2088 13.604 15.4798 13.604 14.5768C13.604 13.6738 14.277 12.9448 15.116 12.9448C15.955 12.9448 16.628 13.6738 16.628 14.5768C16.628 15.4798 15.955 16.2088 15.116 16.2088Z"/></svg>
+                        @ultrazartrex
+                    </div>
+                </div>
             </div>
+
+            <!-- Right Column: Skills and Projects -->
+            <div class="md:col-span-1 space-y-8">
+                <!-- Skills Section -->
+                <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+                    <h2 class="text-2xl font-bold text-white mb-4">Skills</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Security Research</span>
+                        <span class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">AI Jailbreaking</span>
+                        <span class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Sandbox Evasion</span>
+                        <span class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Prompt Engineering</span>
+                        <span class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Vulnerability Analysis</span>
+                    </div>
+                </div>
+                <!-- Projects/Write-ups Section -->
+                <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+                    <h2 class="text-2xl font-bold text-white mb-4">Write-ups</h2>
+                    <div class="space-y-3">
+                        <!-- Placeholder for your bug bounty reports -->
+                        <p class="text-gray-400">Coming soon... My bug bounty reports and research findings will be posted here.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
     </div>
+
 </body>
 </html>
