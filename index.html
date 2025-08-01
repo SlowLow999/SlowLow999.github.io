@@ -28,9 +28,21 @@
         .glow-text {
             text-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
         }
+        /* Styles for the Matrix rain canvas */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind all other content */
+        }
     </style>
 </head>
 <body class="antialiased">
+
+    <!-- Matrix Rain background canvas -->
+    <canvas id="matrix-canvas"></canvas>
 
     <!-- Main container -->
     <div class="container mx-auto max-w-4xl px-4 py-8 md:py-16">
@@ -45,11 +57,11 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             <!-- Left Column: Bio and Social Links -->
-            <div class="md:col-span-2 bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+            <div class="md:col-span-2 bg-gray-800/50 p-6 rounded-lg border border-gray-700 backdrop-blur-sm">
                 <h2 class="text-2xl font-bold text-white mb-4">About Me</h2>
                 <div class="space-y-4 text-gray-300">
                     <p>
-                        Hey, I'm Ahmed Rayane Elouali, but you can call me UltraZartrex. I'm a hacker and security researcher who's fascinated by how systems work—and even more fascinated by how they break. I spend my time poking at AI code interpreters and other sandboxes, always looking for those subtle flaws that lead to big things, like the arbitrary code execution vulnerabilities I've found.
+                        Hey, I'm UltraZartrex. I'm a hacker and security researcher who's fascinated by how systems work—and even more fascinated by how they break. I spend my time poking at AI code interpreters and other sandboxes, always looking for those subtle flaws that lead to big things, like the arbitrary code execution vulnerabilities I've found.
                     </p>
                     <p>
                         I'm probably best known for creating the first one-shot jailbreak for Sonnet 4. My latest deep dive involved a full exploit chain that uncovered a critical cross-tenant data leak in a major AI platform.
@@ -74,7 +86,7 @@
             <!-- Right Column: Skills and Projects -->
             <div class="md:col-span-1 space-y-8">
                 <!-- Skills Section -->
-                <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+                <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 backdrop-blur-sm">
                     <h2 class="text-2xl font-bold text-white mb-4">Skills</h2>
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Security Research</span>
@@ -85,7 +97,7 @@
                     </div>
                 </div>
                 <!-- Projects/Write-ups Section -->
-                <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+                <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700 backdrop-blur-sm">
                     <h2 class="text-2xl font-bold text-white mb-4">Write-ups</h2>
                     <div class="space-y-3">
                         <!-- Placeholder for your bug bounty reports -->
@@ -97,6 +109,62 @@
         </div>
 
     </div>
+
+    <!-- JavaScript for the Matrix Rain Effect -->
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(17, 24, 39, 0.05)'; // Faded black background
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F9D58'; // Green text color for the rain
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 30);
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Recalculate columns and reset drops on resize
+            const newColumns = canvas.width / fontSize;
+            rainDrops.length = 0; // Clear old array
+            for (let x = 0; x < newColumns; x++) {
+                rainDrops[x] = 1;
+            }
+        });
+    </script>
 
 </body>
 </html>
