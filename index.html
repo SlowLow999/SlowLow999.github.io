@@ -50,7 +50,7 @@
         }
 
         /* Improved accessibility for focus states */
-        a:focus-visible {
+        a:focus-visible, button:focus-visible {
             outline: none;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.6);
             border-radius: 4px;
@@ -132,12 +132,17 @@
                      <div class="text-gray-400">
                         <h3 class="font-semibold text-white">Claude Sonnet 4 Jailbreak</h3>
                         <p class="text-sm">Analysis of the first one-shot jailbreak technique.</p>
-                        <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Coming Soon]</a>
+                        <a href="https://github.com/SlowLow999/UltraBr3aks" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline text-sm">[View Research on GitHub]</a>
                     </div>
                     <div class="text-gray-400 pt-2 border-t border-gray-700/50">
                         <h3 class="font-semibold text-white">GitHub Copilot (CVE-2025-XXXXX)</h3>
                         <p class="text-sm">Deep dive into the Cross-Context Injection vulnerability.</p>
                         <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Pending Disclosure]</a>
+                    </div>
+                    <div class="text-gray-400 pt-2 border-t border-gray-700/50">
+                        <h3 class="font-semibold text-white">AI Platform Usage Limit Bypass</h3>
+                        <p class="text-sm">Demonstration of a business logic flaw leading to resource abuse.</p>
+                        <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Disclosure Restricted]</a>
                     </div>
                 </div>
             </section>
@@ -156,7 +161,7 @@
                         </p>
                     </div>
                     <div class="md:col-span-1 text-center">
-                         <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors w-full">Read Full Write-up</a>
+                         <a href="https://github.com/SlowLow999/UltraBr3aks" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors w-full">View on GitHub !</a>
                     </div>
                 </article>
                 <!-- GitHub Copilot Entry -->
@@ -168,7 +173,31 @@
                         </p>
                     </div>
                     <div class="md:col-span-1 text-center">
-                         <a href="#" class="inline-block bg-gray-600 text-white font-bold py-2 px-4 rounded-lg cursor-not-allowed w-full">Pending Disclosure</a>
+                         <a href="#" class="inline-block bg-gray-600 text-white font-bold py-2 px-4 rounded-lg cursor-not-allowed w-full">Pending Disclosure :p </a>
+                    </div>
+                </article>
+                 <!-- AI Platform Resource Abuse Entry -->
+                 <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
+                    <div class="md:col-span-3">
+                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">AI Platform: Resource Abuse & Logic Flaw</h3>
+                        <p class="text-gray-300">
+                           This research identified a significant business logic flaw in a major AI platform's Python tool. By switching between restricted and unrestricted models within the same session, it was possible to bypass the daily usage limits imposed on premium features. The impact was primarily financial, allowing for unfair usage and potential resource exhaustion on the platform's infrastructure. Due to a strict non-disclosure policy, further details cannot be shared publicly.
+                        </p>
+                    </div>
+                    <div class="md:col-span-1 text-center">
+                         <a href="#" class="inline-block bg-gray-600 text-white font-bold py-2 px-4 rounded-lg cursor-not-allowed w-full">Disclosure Restricted¯ \_(ツ)_/¯ </a>
+                    </div>
+                </article>
+                <!-- NEW Sandbox Escape Entry -->
+                <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
+                    <div class="md:col-span-3">
+                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">Code Interpreter: Full Sandbox Escape & Cross-Tenant Data Leak</h3>
+                        <p class="text-gray-300">
+                           This research detailed a full-chain exploit that resulted in a complete sandbox escape and a critical cross-tenant data breach in a major AI platform's code interpreter. The attack chain began with an Arbitrary File Read via symlink abuse, which was escalated to Arbitrary Code Execution by hijacking Python's import mechanism. This control was then used to exploit a misconfigured shared memory directory (`/dev/shm`) to read and write data between supposedly isolated user sessions, breaking the fundamental security promise of a multi-tenant environment. Due to a strict non-disclosure policy, further details cannot be shared publicly.
+                        </p>
+                    </div>
+                    <div class="md:col-span-1 text-center">
+                         <a href="#" class="inline-block bg-gray-600 text-white font-bold py-2 px-4 rounded-lg cursor-not-allowed w-full">Disclosure Restricted ¯\_(ツ)_/¯ </a>
                     </div>
                 </article>
             </div>
