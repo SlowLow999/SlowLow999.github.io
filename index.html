@@ -70,84 +70,80 @@
             <p class="text-lg text-gray-400 mt-2">(SlowLow999)</p>
         </header>
 
-        <!-- Main Content Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- About Me Section (Full Width) -->
+        <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm mb-8">
+            <h2 id="about-heading" class="text-2xl font-bold text-white mb-4">About Me</h2>
+            <div class="space-y-4 text-gray-300">
+                <p>
+                    Hey, I'm UltraZartrex. I'm a security researcher fascinated by how systems work—and even more fascinated by how they break. I spend my time poking at AI code, breaking sandboxes, and pushing the boundaries of what's possible (and impossible).
+                </p>
+                <p>
+                    I'm probably best known for creating the first one-shot jailbreak for Claude Sonnet 4. 
+                    <!-- 
+                        STRATEGIC UPDATE: 
+                        Once your Microsoft finding is public, replace the paragraph above with the one below 
+                        to maximize the impact of your profile.
+                    -->
+                    <!-- 
+                    <p>
+                        My latest research includes the discovery of a critical Cross-Context Injection vulnerability (CVE-2025-XXXXX) in GitHub Copilot, which could lead to software supply chain attacks.
+                    </p>
+                    -->
+                </p>
+            </div>
+            
+            <!-- Social Links with Icons -->
+            <nav class="mt-8 pt-4 border-t border-gray-700 flex items-center space-x-6" aria-label="Social links">
+                <h3 class="text-lg font-semibold text-white">Connect:</h3>
+                <a href="https://github.com/SlowLow999" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-blue-400 transition-colors" aria-label="GitHub Profile">
+                    <!-- GitHub SVG -->
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.09.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.071 1.532 1.031 1.532 1.031.892 1.529 2.341 1.088 2.91.832.09-.647.35-1.088.636-1.339-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.56 9.56 0 012.504.337c1.909-1.294 2.748-1.025 2.748-1.025.545 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.848-2.338 4.695-4.566 4.943.359.309.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .269.18.577.688.48C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                    </svg>
+                    GitHub
+                </a>
+                <a href="https://twitter.com/ultrazartrex" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-blue-400 transition-colors" aria-label="X (formerly Twitter) Profile">
+                    <!-- X/Twitter SVG -->
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                       <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+                    </svg>
+                    @ultrazartrex
+                </a>
+            </nav>
+        </section>
 
-            <!-- Left Column: Bio and Social Links -->
-            <div class="md:col-span-2 bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm">
-                <h2 id="about-heading" class="text-2xl font-bold text-white mb-4">About Me</h2>
-                <div class="space-y-4 text-gray-300">
-                    <p>
-                        Hey, I'm UltraZartrex. I'm a security researcher fascinated by how systems work—and even more fascinated by how they break. I spend my time poking at AI code, breaking sandboxes, and pushing the boundaries of what's possible (and impossible).
-                    </p>
-                    <p>
-                        I'm probably best known for creating the first one-shot jailbreak for Claude Sonnet 4. 
-                        <!-- 
-                            STRATEGIC UPDATE: 
-                            Once your Microsoft finding is public, replace the paragraph above with the one below 
-                            to maximize the impact of your profile.
-                        -->
-                        <!-- 
-                        <p>
-                            My latest research includes the discovery of a critical Cross-Context Injection vulnerability (CVE-2025-XXXXX) in GitHub Copilot, which could lead to software supply chain attacks.
-                        </p>
-                        -->
-                    </p>
+        <!-- Skills & Write-ups Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Skills Section -->
+            <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm" aria-labelledby="skills-heading">
+                <h2 id="skills-heading" class="text-2xl font-bold text-white mb-4">Skills</h2>
+                <div class="flex flex-wrap gap-2" role="list">
+                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Security Research</span>
+                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">AI Jailbreaking</span>
+                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Sandbox Evasion</span>
+                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Prompt Engineering</span>
+                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Vulnerability Analysis</span>
                 </div>
-                
-                <!-- Social Links with Icons -->
-                <nav class="mt-8 pt-4 border-t border-gray-700 flex items-center space-x-6" aria-label="Social links">
-                    <h3 class="text-lg font-semibold text-white">Connect:</h3>
-                    <a href="https://github.com/SlowLow999" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-blue-400 transition-colors" aria-label="GitHub Profile">
-                        <!-- GitHub SVG -->
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.09.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.071 1.532 1.031 1.532 1.031.892 1.529 2.341 1.088 2.91.832.09-.647.35-1.088.636-1.339-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.56 9.56 0 012.504.337c1.909-1.294 2.748-1.025 2.748-1.025.545 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.848-2.338 4.695-4.566 4.943.359.309.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .269.18.577.688.48C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
-                        </svg>
-                        GitHub
-                    </a>
-                    <a href="https://twitter.com/ultrazartrex" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-blue-400 transition-colors" aria-label="X (formerly Twitter) Profile">
-                        <!-- X/Twitter SVG -->
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                           <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
-                        </svg>
-                        @ultrazartrex
-                    </a>
-                </nav>
-            </div>
-
-            <!-- Right Column: Skills and Projects -->
-            <div class="md:col-span-1 space-y-8">
-                <!-- Skills Section -->
-                <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm" aria-labelledby="skills-heading">
-                    <h2 id="skills-heading" class="text-2xl font-bold text-white mb-4">Skills</h2>
-                    <div class="flex flex-wrap gap-2" role="list">
-                        <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Security Research</span>
-                        <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">AI Jailbreaking</span>
-                        <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Sandbox Evasion</span>
-                        <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Prompt Engineering</span>
-                        <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Vulnerability Analysis</span>
+            </section>
+            <!-- Write-ups Section -->
+            <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm" aria-labelledby="writeups-heading">
+                <h2 id="writeups-heading" class="text-2xl font-bold text-white mb-4">Write-ups</h2>
+                <div class="space-y-3">
+                     <div class="text-gray-400">
+                        <h3 class="font-semibold text-white">Claude Sonnet 4 Jailbreak</h3>
+                        <p class="text-sm">Analysis of the first one-shot jailbreak technique.</p>
+                        <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Coming Soon]</a>
                     </div>
-                </section>
-                <!-- Write-ups Section -->
-                <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm" aria-labelledby="writeups-heading">
-                    <h2 id="writeups-heading" class="text-2xl font-bold text-white mb-4">Write-ups</h2>
-                    <div class="space-y-3">
-                         <div class="text-gray-400">
-                            <h3 class="font-semibold text-white">Claude Sonnet 4 Jailbreak</h3>
-                            <p class="text-sm">Analysis of the first one-shot jailbreak technique.</p>
-                            <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Coming Soon]</a>
-                        </div>
-                        <div class="text-gray-400 pt-2 border-t border-gray-700/50">
-                            <h3 class="font-semibold text-white">GitHub Copilot (CVE-2025-XXXXX)</h3>
-                            <p class="text-sm">Deep dive into the Cross-Context Injection vulnerability.</p>
-                            <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Pending Disclosure]</a>
-                        </div>
+                    <div class="text-gray-400 pt-2 border-t border-gray-700/50">
+                        <h3 class="font-semibold text-white">GitHub Copilot (CVE-2025-XXXXX)</h3>
+                        <p class="text-sm">Deep dive into the Cross-Context Injection vulnerability.</p>
+                        <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Pending Disclosure]</a>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
         </div>
 
-        <!-- NEW Featured Research Section -->
+        <!-- Featured Research Section -->
         <section class="mt-16 pt-8 border-t border-gray-700" aria-labelledby="featured-research-heading">
             <h2 id="featured-research-heading" class="text-3xl font-bold text-white text-center mb-8">Featured Research</h2>
             <div class="space-y-12">
