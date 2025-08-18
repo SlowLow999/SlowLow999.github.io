@@ -132,11 +132,51 @@
                 <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm" aria-labelledby="writeups-heading">
                     <h2 id="writeups-heading" class="text-2xl font-bold text-white mb-4">Write-ups</h2>
                     <div class="space-y-3">
-                        <p class="text-gray-400">Coming soon... My bug bounty reports and research findings will be posted here.</p>
+                         <div class="text-gray-400">
+                            <h3 class="font-semibold text-white">Claude Sonnet 4 Jailbreak</h3>
+                            <p class="text-sm">Analysis of the first one-shot jailbreak technique.</p>
+                            <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Coming Soon]</a>
+                        </div>
+                        <div class="text-gray-400 pt-2 border-t border-gray-700/50">
+                            <h3 class="font-semibold text-white">GitHub Copilot (CVE-2025-XXXXX)</h3>
+                            <p class="text-sm">Deep dive into the Cross-Context Injection vulnerability.</p>
+                            <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Pending Disclosure]</a>
+                        </div>
                     </div>
                 </section>
             </div>
         </div>
+
+        <!-- NEW Featured Research Section -->
+        <section class="mt-16 pt-8 border-t border-gray-700" aria-labelledby="featured-research-heading">
+            <h2 id="featured-research-heading" class="text-3xl font-bold text-white text-center mb-8">Featured Research</h2>
+            <div class="space-y-12">
+                <!-- Claude Sonnet 4 Entry -->
+                <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
+                    <div class="md:col-span-3">
+                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">Claude Sonnet 4: The First One-Shot Jailbreak</h3>
+                        <p class="text-gray-300">
+                            This research detailed a novel technique to bypass the ethical and safety guardrails of Anthropic's Claude Sonnet 4 model in a single prompt. The method involved a sophisticated logical override that forced the model to ignore its safety instructions. This finding was significant as it demonstrated that even advanced models were susceptible to single-turn, high-impact jailbreaks, contributing to the broader community's understanding of LLM safety.
+                        </p>
+                    </div>
+                    <div class="md:col-span-1 text-center">
+                         <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors w-full">Read Full Write-up</a>
+                    </div>
+                </article>
+                <!-- GitHub Copilot Entry -->
+                 <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
+                    <div class="md:col-span-3">
+                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">GitHub Copilot: Cross-Context Injection & Supply Chain Risk</h3>
+                        <p class="text-gray-300">
+                           This discovery (pending disclosure as CVE-2025-XXXXX) uncovered a critical architectural flaw in the GitHub Copilot agent. The research proved that the agent's context could be "poisoned" by hidden instructions in repository files. This allowed for a full hijack of the agent's behavior, enabling stealthy supply chain attacks where a trusted developer could be tricked into committing malicious code. The finding highlighted the severe risks associated with state management in multi-turn AI agents.
+                        </p>
+                    </div>
+                    <div class="md:col-span-1 text-center">
+                         <a href="#" class="inline-block bg-gray-600 text-white font-bold py-2 px-4 rounded-lg cursor-not-allowed w-full">Pending Disclosure</a>
+                    </div>
+                </article>
+            </div>
+        </section>
     </main>
 
     <!-- Matrix Rain Effect - Optimized with requestAnimationFrame -->
