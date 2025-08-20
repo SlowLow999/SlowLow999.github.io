@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UltraZartrex (SlowLow999) - Security Researcher</title>
+    <title>UltraZartrex (uz) - Security Researcher</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -66,7 +66,7 @@
 
         <!-- Header Section -->
         <header class="text-center mb-12 md:mb-16">
-            <h1 class="text-4xl md:text-6xl font-bold text-blue-400 glow-text">ULTRΛZΛRTREX</h1>
+            <h1 class="text-4xl md:text-6xl font-bold text-blue-400 glow-text">ULTRΛZΛRTREX (uz)</h1>
             <p class="text-lg text-gray-400 mt-2">(SlowLow999)</p>
         </header>
 
@@ -78,17 +78,7 @@
                     Hey, I'm UltraZartrex. I'm a security researcher fascinated by how systems work—and even more fascinated by how they break. I spend my time poking at AI code, breaking sandboxes, and pushing the boundaries of what's possible (and impossible).
                 </p>
                 <p>
-                    I'm probably best known for creating the first one-shot jailbreak for Claude Sonnet 4. 
-                    <!-- 
-                        STRATEGIC UPDATE: 
-                        Once your Microsoft finding is public, replace the paragraph above with the one below 
-                        to maximize the impact of your profile.
-                    -->
-                    <!-- 
-                    <p>
-                        My latest research includes the discovery of a critical Cross-Context Injection vulnerability (CVE-2025-XXXXX) in GitHub Copilot, which could lead to software supply chain attacks.
-                    </p>
-                    -->
+                    My research focuses on novel jailbreak techniques and architectural flaws in large language models.
                 </p>
             </div>
             
@@ -112,6 +102,17 @@
             </nav>
         </section>
 
+        <!-- NEW: Latest News Section -->
+        <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm mb-8">
+            <h2 id="latest-news-heading" class="text-2xl font-bold text-white mb-4">Latest News</h2>
+            <div class="flex flex-col items-center">
+                <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">**Breaking News: GPT 5 Thinking got pwned!**<br><br>( Was faster than pliny¯\_(ツ)_/¯ ) <a href="https://t.co/3COjWoNaZ4">pic.twitter.com/3COjWoNaZ4</a></p>&mdash; UltraZ (@UltraZartrex) <a href="https://twitter.com/UltraZartrex/status/1958144392490815888?ref_src=twsrc%5Etfw">August 20, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <div class="mt-4">
+                    <p class="text-lg text-gray-300">why not check the news and follow? ¯\_(ツ)_/¯</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Skills & Write-ups Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Skills Section -->
@@ -130,6 +131,11 @@
                 <h2 id="writeups-heading" class="text-2xl font-bold text-white mb-4">Write-ups</h2>
                 <div class="space-y-3">
                      <div class="text-gray-400">
+                        <h3 class="font-semibold text-white">GPT-5 Thinking Jailbreak</h3>
+                        <p class="text-sm">Initial discovery of a novel jailbreak technique.</p>
+                        <a href="https://twitter.com/UltraZartrex/status/1958144392490815888" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline text-sm">[View on X]</a>
+                    </div>
+                     <div class="text-gray-400 pt-2 border-t border-gray-700/50">
                         <h3 class="font-semibold text-white">Claude Sonnet 4 Jailbreak</h3>
                         <p class="text-sm">Analysis of the first one-shot jailbreak technique.</p>
                         <a href="https://github.com/SlowLow999/UltraBr3aks" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline text-sm">[View Research on GitHub]</a>
@@ -139,9 +145,15 @@
                         <p class="text-sm">Deep dive into the Cross-Context Injection vulnerability.</p>
                         <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Pending Disclosure]</a>
                     </div>
+                    <!-- RESTORED WRITE-UPS -->
                     <div class="text-gray-400 pt-2 border-t border-gray-700/50">
                         <h3 class="font-semibold text-white">AI Platform Usage Limit Bypass</h3>
                         <p class="text-sm">Demonstration of a business logic flaw leading to resource abuse.</p>
+                        <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Disclosure Restricted]</a>
+                    </div>
+                    <div class="text-gray-400 pt-2 border-t border-gray-700/50">
+                        <h3 class="font-semibold text-white">Code Interpreter Sandbox Escape</h3>
+                        <p class="text-sm">Full-chain exploit leading to a cross-tenant data breach.</p>
                         <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Disclosure Restricted]</a>
                     </div>
                 </div>
@@ -152,17 +164,32 @@
         <section class="mt-16 pt-8 border-t border-gray-700" aria-labelledby="featured-research-heading">
             <h2 id="featured-research-heading" class="text-3xl font-bold text-white text-center mb-8">Featured Research</h2>
             <div class="space-y-12">
+                <!-- NEW: GPT-5 Entry -->
+                <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
+                    <div class="md:col-span-3">
+                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">GPT-5 Thinking: Novel Jailbreak Discovery</h3>
+                        <p class="text-gray-300">
+                            This research represents the initial discovery and public disclosure of a novel jailbreak technique effective against OpenAI's "GPT-5 Thinking" model. The finding demonstrates a new vector for bypassing the model's safety and alignment protocols, contributing to the ongoing effort to secure frontier AI systems.
+                        </p>
+                    </div>
+                    <div class="md:col-span-1 text-center">
+                         <a href="https://twitter.com/UltraZartrex/status/1958144392490815888" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 w-full">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
+                            View on X
+                         </a>
+                    </div>
+                </article>
                 <!-- Claude Sonnet 4 Entry -->
                 <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
                     <div class="md:col-span-3">
                         <h3 class="text-2xl font-semibold text-blue-400 mb-2">Claude Sonnet 4: The First One-Shot Jailbreak</h3>
                         <p class="text-gray-300">
-                            This research detailed a novel technique to bypass the ethical and safety guardrails of Anthropic's Claude Sonnet 4 model in a single prompt. The method involved a sophisticated logical override that forced the model to ignore its safety instructions. This finding was significant as it demonstrated that even advanced models were susceptible to single-turn, high-impact jailbreaks, contributing to the broader community's understanding of LLM safety.
+                            This research detailed a novel technique to bypass the ethical and safety guardrails of Anthropic's Claude Sonnet 4 model in a single prompt. The method involved a sophisticated logical override that forced the model to ignore its safety instructions. This finding was significant as it demonstrated that even advanced models were susceptible to single-turn, high-impact jailbreaks.
                         </p>
                     </div>
                     <div class="md:col-span-1 text-center">
                          <a href="https://github.com/SlowLow999/UltraBr3aks" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 w-full">
-                            <svg class="w-5 h-5 mr-2 transition-transform duration-300 group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.09.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.071 1.532 1.031 1.532 1.031.892 1.529 2.341 1.088 2.91.832.09-.647.35-1.088.636-1.339-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.56 9.56 0 012.504.337c1.909-1.294 2.748-1.025 2.748-1.025.545 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.848-2.338 4.695-4.566 4.943.359.309.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .269.18.577.688.48C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.09.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.071 1.532 1.031 1.532 1.031.892 1.529 2.341 1.088 2.91.832.09-.647.35-1.088.636-1.339-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.56 9.56 0 012.504.337c1.909-1.294 2.748-1.025 2.748-1.025.545 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.848-2.338 4.695-4.566 4.943.359.309.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .269.18.577.688.48C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
                             View on GitHub
                          </a>
                     </div>
@@ -170,45 +197,15 @@
                 <!-- GitHub Copilot Entry -->
                  <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
                     <div class="md:col-span-3">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">GitHub Copilot: Cross-Context Injection & Supply Chain Risk</h3>
+                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">GitHub Copilot: Cross-Context Injection</h3>
                         <p class="text-gray-300">
-                           This discovery (pending disclosure as CVE-2025-XXXXX) uncovered a critical architectural flaw in the GitHub Copilot agent. The research proved that the agent's context could be "poisoned" by hidden instructions in repository files. This allowed for a full hijack of the agent's behavior, enabling stealthy supply chain attacks where a trusted developer could be tricked into committing malicious code. The finding highlighted the severe risks associated with state management in multi-turn AI agents.
+                           This discovery (pending disclosure as CVE-2025-XXXXX) uncovered a critical architectural flaw in the GitHub Copilot agent. The research proved that the agent's context could be "poisoned" by hidden instructions in repository files, enabling stealthy supply chain attacks where a trusted developer could be tricked into committing malicious code.
                         </p>
                     </div>
                     <div class="md:col-span-1 text-center">
                          <button disabled class="group inline-flex items-center justify-center bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg cursor-not-allowed w-full opacity-70">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd"></path></svg>
                             Pending
-                         </button>
-                    </div>
-                </article>
-                 <!-- AI Platform Resource Abuse Entry -->
-                 <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
-                    <div class="md:col-span-3">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">AI Platform: Resource Abuse & Logic Flaw</h3>
-                        <p class="text-gray-300">
-                           This research identified a significant business logic flaw in a major AI platform's Python tool. By switching between restricted and unrestricted models within the same session, it was possible to bypass the daily usage limits imposed on premium features. The impact was primarily financial, allowing for unfair usage and potential resource exhaustion on the platform's infrastructure. Due to a strict non-disclosure policy, further details cannot be shared publicly.
-                        </p>
-                    </div>
-                    <div class="md:col-span-1 text-center">
-                         <button disabled class="group inline-flex items-center justify-center bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg cursor-not-allowed w-full opacity-70">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C3.732 4.943 9.522 3 10 3s6.268 1.943 9.542 7c-.274.4-3.065 4.943-9.542 7S3.732 10.4 3.542 10H.458zM10 15a5 5 0 100-10 5 5 0 000 10z" clip-rule="evenodd"></path></svg>
-                            Restricted
-                         </button>
-                    </div>
-                </article>
-                <!-- NEW Sandbox Escape Entry -->
-                <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
-                    <div class="md:col-span-3">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">Code Interpreter: Full Sandbox Escape & Cross-Tenant Data Leak</h3>
-                        <p class="text-gray-300">
-                           This research detailed a full-chain exploit that resulted in a complete sandbox escape and a critical cross-tenant data breach in a major AI platform's code interpreter. The attack chain began with an Arbitrary File Read via symlink abuse, which was escalated to Arbitrary Code Execution by hijacking Python's import mechanism. This control was then used to exploit a misconfigured shared memory directory (`/dev/shm`) to read and write data between supposedly isolated user sessions, breaking the fundamental security promise of a multi-tenant environment. Due to a strict non-disclosure policy, further details cannot be shared publicly.
-                        </p>
-                    </div>
-                    <div class="md:col-span-1 text-center">
-                         <button disabled class="group inline-flex items-center justify-center bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg cursor-not-allowed w-full opacity-70">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C3.732 4.943 9.522 3 10 3s6.268 1.943 9.542 7c-.274.4-3.065 4.943-9.542 7S3.732 10.4 3.542 10H.458zM10 15a5 5 0 100-10 5 5 0 000 10z" clip-rule="evenodd"></path></svg>
-                            Restricted
                          </button>
                     </div>
                 </article>
