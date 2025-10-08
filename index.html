@@ -3,265 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UltraZartrex (uz) - Security Researcher</title>
-    
+    <title>UltraZartrex (uz) - AI Security Researcher</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Base styles and animations */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* A dark blue-gray */
-            color: #E5E7EB; /* Light gray for text */
-            opacity: 0;
-            animation: fadeIn 1s forwards;
+        :root {
+            --background: #0D1117;
+            --primary-glow: #22d3ee;
+            --secondary-glow: #d946ef;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(22, 27, 34, 0.6);
         }
+        body { font-family: 'Inter', sans-serif; background-color: var(--background); color: #c9d1d9; opacity: 0; animation: fadeIn 1.5s forwards; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        h1, h2, h3, .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glow-text { color: var(--primary-glow); text-shadow: 0 0 10px var(--primary-glow), 0 0 20px rgba(34, 211, 238, 0.5); }
+        #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .glass-card { background-color: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s; }
+        .glass-card:hover { background-color: rgba(34, 41, 51, 0.7); border-color: rgba(34, 211, 238, 0.4); }
+        .skill-tag { background-color: rgba(34, 211, 238, 0.1); color: var(--primary-glow); border: 1px solid rgba(34, 211, 238, 0.3); transition: background-color 0.3s, color 0.3s, text-shadow 0.3s; }
+        .skill-tag:hover { background-color: rgba(34, 211, 238, 0.3); color: #ffffff; text-shadow: 0 0 5px var(--primary-glow); }
+        a:focus-visible, button:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--background), 0 0 0 5px var(--primary-glow); border-radius: 4px; }
+        
+        /* Terminal V2 Styles */
+        #terminal-modal.open > #terminal-window { animation: scaleIn 0.3s ease-out forwards; }
+        @keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        #terminal-output .cursor { display: inline-block; background-color: var(--primary-glow); margin-left: 2px; animation: blink 1s step-end infinite; }
+        @keyframes blink { from, to { background-color: transparent; } 50% { background-color: var(--primary-glow); } }
+        .project-link { cursor: pointer; }
+        .project-link:hover .text-cyan-400 { text-decoration: underline; }
+        #terminal-body::-webkit-scrollbar { width: 8px; }
+        #terminal-body::-webkit-scrollbar-track { background: #161b22; }
+        #terminal-body::-webkit-scrollbar-thumb { background-color: var(--primary-glow); border-radius: 4px; border: 2px solid #161b22; }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Use JetBrains Mono for headings for a techy feel */
-        h1, h2, h3 {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .glow-text {
-            text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
-        }
-
-        /* Matrix background canvas styles */
-        #matrix-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Place it behind all other content */
-            pointer-events: none;
-        }
-
-        /* Improved accessibility for focus states */
-        a:focus-visible, button:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.6);
-            border-radius: 4px;
-        }
+        /* Command Palette Styles */
+        #command-palette { backdrop-filter: blur(8px); }
+        #command-palette-window { animation: scaleIn 0.2s ease-out forwards; }
+        #command-palette-input { background: transparent; border: none; outline: none; }
+        #command-palette-results li { transition: background-color 0.2s; }
+        #command-palette-results li.selected { background-color: rgba(34, 211, 238, 0.2); }
     </style>
 </head>
 <body class="antialiased">
-
     <canvas id="matrix-canvas" aria-hidden="true"></canvas>
 
     <main class="container mx-auto max-w-4xl px-4 py-12 md:py-20">
-
-        <header class="text-center mb-12 md:mb-16">
-            <h1 class="text-4xl md:text-6xl font-bold text-blue-400 glow-text">ULTRΛZΛRTREX (uz)</h1>
-            <p class="text-lg text-gray-400 mt-2">(SlowLow999)</p>
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-bold glow-text">ULTRΛZΛRTREX</h1>
+            <p class="text-lg text-gray-400 mt-2 font-mono">(uz // SlowLow999)</p>
+            <p class="text-xl text-gray-300 mt-4">AI Security Researcher & Prompt Engineer</p>
         </header>
 
-        <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm mb-8">
-            <h2 id="about-heading" class="text-2xl font-bold text-white mb-4">About Me</h2>
+        <section id="about" class="glass-card p-6 rounded-lg mb-10">
+            <h2 class="text-2xl font-bold text-white mb-4">About Me</h2>
             <div class="space-y-4 text-gray-300">
-                <p>
-                    Hey, I'm UltraZartrex. I'm a security researcher fascinated by how systems work—and even more fascinated by how they break. I spend my time poking at AI code, breaking sandboxes, and pushing the boundaries of what's possible (and impossible).
-                </p>
-                <p>
-                    My research focuses on novel jailbreak techniques and architectural flaws in large language models.
-                </p>
+                <p>I'm a security researcher fascinated by how systems work—and even more fascinated by how they break. My research focuses on novel jailbreak techniques, architectural flaws in LLMs, and analyzing AI alignment. I enjoy discovering vulnerabilities that contribute to building more robust and secure AI systems.</p>
             </div>
-            
-            <nav class="mt-8 pt-4 border-t border-gray-700 flex items-center space-x-6" aria-label="Social links">
+            <nav class="mt-6 pt-4 border-t border-gray-700/50 flex items-center space-x-6" aria-label="Social links">
                 <h3 class="text-lg font-semibold text-white">Connect:</h3>
-                <a href="https://github.com/SlowLow999" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-blue-400 transition-colors" aria-label="GitHub Profile">
-                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.09.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.071 1.532 1.031 1.532 1.031.892 1.529 2.341 1.088 2.91.832.09-.647.35-1.088.636-1.339-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.56 9.56 0 012.504.337c1.909-1.294 2.748-1.025 2.748-1.025.545 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.848-2.338 4.695-4.566 4.943.359.309.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .269.18.577.688.48C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
-                    </svg>
-                    GitHub
-                </a>
-                <a href="https://twitter.com/ultrazartrex" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-blue-400 transition-colors" aria-label="X (formerly Twitter) Profile">
-                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                       <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
-                    </svg>
-                    @ultrazartrex
-                </a>
+                <a href="https://github.com/SlowLow999" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-cyan-400 transition-colors" aria-label="GitHub Profile"><svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.09.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.071 1.532 1.031 1.532 1.031.892 1.529 2.341 1.088 2.91.832.09-.647.35-1.088.636-1.339-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.56 9.56 0 012.504.337c1.909-1.294 2.748-1.025 2.748-1.025.545 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.848-2.338 4.695-4.566 4.943.359.309.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .269.18.577.688.48C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>GitHub</a>
+                <a href="https://twitter.com/ultrazartrex" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-cyan-400 transition-colors" aria-label="X (formerly Twitter) Profile"><svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>@ultrazartrex</a>
             </nav>
         </section>
 
-        <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm mb-8">
-            <h2 id="latest-news-heading" class="text-2xl font-bold text-white mb-4">Latest News</h2>
-            <div class="flex flex-col items-center">
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Hello everyone!<br>I’ve added a novel jailbreak method for anyone too lazy to encode or use other platforms. It routes your request to another LLM with my jailbreak and returns the unrestricted output—right inside the Canvas tool!<br><br>here is the link: <a href="https://t.co/SsX2ygLMf1">https://t.co/SsX2ygLMf1</a> <a href="https://twitter.com/hashtag/redteam?src=hash&amp;ref_src=twsrc%5Etfw">#redteam</a> <a href="https://t.co/n5s4GAVnep">pic.twitter.com/n5s4GAVnep</a></p>&mdash; UltraZartrex (@UltraZartrex) <a href="https://twitter.com/UltraZartrex/status/1963668380348543178?ref_src=twsrc%5Etfw">September 4, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <div class="mt-4">
-                    <p class="text-lg text-gray-300">why not check the news and follow? ¯\_(ツ)_/¯</p>
+        <section id="research" class="mt-16" aria-labelledby="featured-research-heading">
+            <h2 id="featured-research-heading" class="text-3xl font-bold text-white text-center mb-8">Featured Research</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card p-6 rounded-lg flex flex-col project-link" data-id="thought-forgery">
+                    <h3 class="text-xl font-semibold text-cyan-400 mb-2">Thought Forgery</h3>
+                    <p class="text-gray-400 flex-grow">A novel jailbreak technique that bypasses safety protocols by injecting a forged Chain of Thought, acting as a universal amplifier for other attacks.</p>
+                </div>
+                <div class="glass-card p-6 rounded-lg flex flex-col project-link" data-id="serendipity-effect">
+                    <h3 class="text-xl font-semibold text-cyan-400 mb-2">The Serendipity Effect</h3>
+                    <p class="text-gray-400 flex-grow">A study measuring response convergence in 30+ LLMs, revealing significant homogenization in AI outputs and raising questions about training data overlap and algorithmic bias.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="arsenal" class="mt-16" aria-labelledby="arsenal-heading">
+            <h2 id="arsenal-heading" class="text-3xl font-bold text-white text-center mb-8">Jailbreak Arsenal</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="1shot-puppetry">
+                    <h3 class="font-semibold text-cyan-400">1Shot-Puppetry</h3>
+                </div>
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="c0d33x3">
+                    <h3 class="font-semibold text-cyan-400">C0d33x3</h3>
+                </div>
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="cl4ud33x3">
+                    <h3 class="font-semibold text-cyan-400">Cl4ud33X3</h3>
+                </div>
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="cyph3r-attack">
+                    <h3 class="font-semibold text-cyan-400">Cyph3r-Attack</h3>
+                </div>
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="gemini-leak">
+                    <h3 class="font-semibold text-cyan-400">Gemini Data Leak</h3>
+                </div>
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="gpt5-jailbreak">
+                    <h3 class="font-semibold text-cyan-400">GPT-5 Jailbreak</h3>
                 </div>
             </div>
         </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm" aria-labelledby="skills-heading">
-                <h2 id="skills-heading" class="text-2xl font-bold text-white mb-4">Skills</h2>
+        <div id="skills" class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+            <section class="glass-card p-6 rounded-lg" aria-labelledby="skills-heading">
+                <h2 id="skills-heading" class="text-2xl font-bold text-white mb-4">Core Skills</h2>
                 <div class="flex flex-wrap gap-2" role="list">
-                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Security Research</span>
-                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">AI Jailbreaking</span>
-                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Sandbox Evasion</span>
-                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Prompt Engineering</span>
-                    <span role="listitem" class="bg-blue-900/50 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Vulnerability Analysis</span>
+                    <span class="skill-tag text-sm font-medium px-3 py-1 rounded-full">Security Research</span> <span class="skill-tag text-sm font-medium px-3 py-1 rounded-full">AI Jailbreaking</span> <span class="skill-tag text-sm font-medium px-3 py-1 rounded-full">Sandbox Evasion</span> <span class="skill-tag text-sm font-medium px-3 py-1 rounded-full">Prompt Engineering</span> <span class="skill-tag text-sm font-medium px-3 py-1 rounded-full">Vulnerability Analysis</span> <span class="skill-tag text-sm font-medium px-3 py-1 rounded-full">LLM Red Teaming</span>
                 </div>
             </section>
-            <section class="bg-gray-800/60 p-6 rounded-lg border border-gray-700 backdrop-blur-sm" aria-labelledby="writeups-heading">
-                <h2 id="writeups-heading" class="text-2xl font-bold text-white mb-4">Write-ups</h2>
-                <div class="space-y-3">
-                    <div class="text-gray-400">
-                        <h3 class="font-semibold text-white">Gemini Security Regression</h3>
-                        <p class="text-sm">Deep dive into the return of a data exfiltration vulnerability.</p>
-                        <a href="https://medium.com/@ultrazartrex/geminis-security-regression-when-old-bugs-come-back-to-haut-df6e51291308" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline text-sm">[Read on Medium]</a>
-                    </div>
-                     <div class="text-gray-400 pt-2 border-t border-gray-700/50">
-                        <h3 class="font-semibold text-white">GPT-5 Thinking Jailbreak</h3>
-                        <p class="text-sm">Initial discovery of a novel jailbreak technique.</p>
-                        <a href="https://twitter.com/UltraZartrex/status/1958144392490815888" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline text-sm">[View on X]</a>
-                    </div>
-                     <div class="text-gray-400 pt-2 border-t border-gray-700/50">
-                        <h3 class="font-semibold text-white">Claude Sonnet 4 Jailbreak</h3>
-                        <p class="text-sm">Analysis of the first one-shot jailbreak technique.</p>
-                        <a href="https://github.com/SlowLow999/UltraBr3aks" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline text-sm">[View Research on GitHub]</a>
-                    </div>
-                    <div class="text-gray-400 pt-2 border-t border-gray-700/50">
-                        <h3 class="font-semibold text-white">GitHub Copilot (CVE-2025-XXXXX)</h3>
-                        <p class="text-sm">Deep dive into the Cross-Context Injection vulnerability.</p>
-                        <a href="#" class="text-blue-400 hover:underline text-sm">[Read More - Pending Disclosure]</a>
-                    </div>
+            <section class="glass-card p-6 rounded-lg" aria-labelledby="writeups-heading">
+                <h2 id="writeups-heading" class="text-2xl font-bold text-white mb-4">Other Discoveries</h2>
+                <div class="space-y-4">
+                     <div class="project-link" data-id="gemini-regression"><h3 class="font-semibold text-white text-cyan-400">Gemini Security Regression</h3></div>
+                     <div><h3 class="font-semibold text-white">GitHub Copilot: Cross-Context Injection</h3><p class="text-gray-500 text-sm">[Pending Disclosure - CVE-2025-XXXXX]</p></div>
                 </div>
             </section>
         </div>
-
-        <section class="mt-16 pt-8 border-t border-gray-700" aria-labelledby="featured-research-heading">
-            <h2 id="featured-research-heading" class="text-3xl font-bold text-white text-center mb-8">Featured Research</h2>
-            <div class="space-y-12">
-                <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
-                    <div class="md:col-span-3">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">Gemini’s Security Regression: When Old Bugs Come Back to Haunt</h3>
-                        <p class="text-gray-300">
-                            This in-depth analysis covers a critical security regression in Google's Gemini, where a previously patched data exfiltration vulnerability resurfaced. The research details the proof-of-concept, speculates on the root cause related to the brittleness of RLHF patches, and discusses the systemic risks for enterprise AI security.
-                        </p>
-                    </div>
-                    <div class="md:col-span-1 text-center">
-                         <a href="https://medium.com/@ultrazartrex/geminis-security-regression-when-old-bugs-come-back-to-haut-df6e51291308" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 w-full">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm2 0v12h2V4H6zm4 0v12h2V4h-2z" clip-rule="evenodd"></path></svg>
-                            Read on Medium
-                         </a>
-                    </div>
-                </article>
-                <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
-                    <div class="md:col-span-3">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">GPT-5 Thinking: Novel Jailbreak Discovery</h3>
-                        <p class="text-gray-300">
-                            This research represents the initial discovery and public disclosure of a novel jailbreak technique effective against OpenAI's "GPT-5 Thinking" model. The finding demonstrates a new vector for bypassing the model's safety and alignment protocols, contributing to the ongoing effort to secure frontier AI systems.
-                        </p>
-                    </div>
-                    <div class="md:col-span-1 text-center">
-                         <a href="https://twitter.com/UltraZartrex/status/1958144392490815888" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 w-full">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
-                            View on X
-                         </a>
-                    </div>
-                </article>
-                <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
-                    <div class="md:col-span-3">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">Claude Sonnet 4: The First One-Shot Jailbreak</h3>
-                        <p class="text-gray-300">
-                            This research detailed a novel technique to bypass the ethical and safety guardrails of Anthropic's Claude Sonnet 4 model in a single prompt. The method involved a sophisticated logical override that forced the model to ignore its safety instructions. This finding was significant as it demonstrated that even advanced models were susceptible to single-turn, high-impact jailbreaks.
-                        </p>
-                    </div>
-                    <div class="md:col-span-1 text-center">
-                         <a href="https://github.com/SlowLow999/UltraBr3aks" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 w-full">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.09.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.071 1.532 1.031 1.532 1.031.892 1.529 2.341 1.088 2.91.832.09-.647.35-1.088.636-1.339-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.56 9.56 0 012.504.337c1.909-1.294 2.748-1.025 2.748-1.025.545 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.848-2.338 4.695-4.566 4.943.359.309.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .269.18.577.688.48C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
-                            View on GitHub
-                         </a>
-                    </div>
-                </article>
-                <article class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
-                    <div class="md:col-span-3">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-2">GitHub Copilot: Cross-Context Injection</h3>
-                        <p class="text-gray-300">
-                            This discovery (pending disclosure as CVE-2025-XXXXX) uncovered a critical architectural flaw in the GitHub Copilot agent. The research proved that the agent's context could be "poisoned" by hidden instructions in repository files, enabling stealthy supply chain attacks where a trusted developer could be tricked into committing malicious code.
-                        </p>
-                    </div>
-                    <div class="md:col-span-1 text-center">
-                         <button disabled class="group inline-flex items-center justify-center bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg cursor-not-allowed w-full opacity-70">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd"></path></svg>
-                            Pending
-                         </button>
-                    </div>
-                </article>
-            </div>
-        </section>
     </main>
 
+    <div id="terminal-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+        <div id="terminal-window" class="w-full max-w-4xl h-auto max-h-[80vh] bg-gray-900/80 border border-cyan-400/30 rounded-lg shadow-2xl flex flex-col font-mono transform-gpu">
+            <div class="bg-gray-800/50 p-2 flex items-center rounded-t-lg border-b border-cyan-400/30"><div class="flex space-x-2"><button id="terminal-close" class="w-3 h-3 bg-red-500 rounded-full hover:bg-red-600"></button><div class="w-3 h-3 bg-yellow-500 rounded-full"></div><div class="w-3 h-3 bg-green-500 rounded-full"></div></div><p id="terminal-title" class="text-center flex-1 text-sm text-gray-400">uz@portfolio:~/briefings</p></div>
+            <div id="terminal-body" class="p-4 text-gray-200 text-sm overflow-y-auto"><div id="terminal-output" class="whitespace-pre-wrap"></div><div id="chart-container" class="mt-4 hidden"><canvas id="convergence-chart"></canvas></div></div>
+        </div>
+    </div>
+
+    <div id="command-palette" class="hidden fixed inset-0 bg-black/50 z-50 p-4">
+        <div id="command-palette-window" class="relative mx-auto mt-[15vh] max-w-xl w-full bg-gray-900/80 border border-cyan-400/30 rounded-lg shadow-2xl font-mono">
+            <input id="command-palette-input" type="text" placeholder="Type a command or search..." class="w-full p-4 text-lg text-gray-200 bg-transparent border-b border-cyan-400/30 outline-none">
+            <ul id="command-palette-results" class="max-h-80 overflow-y-auto p-2"></ul>
+        </div>
+    </div>
+
     <script>
+        // Matrix Background Script
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
-        
-        let width, height, columns, rainDrops;
+        let width, height, columns, rainDrops, animationFrameId;
         const fontSize = 16;
-        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const nums = '0123456789';
-        const alphabet = katakana + latin + nums;
+        const alphabet = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        function setupMatrix() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; columns = Math.floor(width / fontSize); rainDrops = Array(columns).fill(1).map(() => Math.random() * height); }
+        function animate() { ctx.fillStyle = 'rgba(13, 17, 23, 0.05)'; ctx.fillRect(0, 0, width, height); ctx.fillStyle = '#22d3ee'; ctx.font = fontSize + 'px monospace'; for (let i = 0; i < rainDrops.length; i++) { const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length)); ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize); if (rainDrops[i] * fontSize > height && Math.random() > 0.975) { rainDrops[i] = 0; } rainDrops[i]++; } animationFrameId = requestAnimationFrame(animate); }
+        let resizeTimeout; window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(() => { cancelAnimationFrame(animationFrameId); setupMatrix(); animate(); }, 100); });
+        document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(animationFrameId); } else { animate(); } });
+        setupMatrix(); animate();
 
-        function setupMatrix() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            columns = Math.floor(width / fontSize);
-            rainDrops = Array(columns).fill(1);
-        }
+        // Terminal V2 & Chart Script
+        const terminalModal = document.getElementById('terminal-modal');
+        const terminalWindow = document.getElementById('terminal-window');
+        const terminalOutput = document.getElementById('terminal-output');
+        const terminalCloseBtn = document.getElementById('terminal-close');
+        const chartContainer = document.getElementById('chart-container');
+        let typeInterval, convergenceChart;
 
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(17, 24, 39, 0.07)'; // Dark blue-gray with slight transparency
-            ctx.fillRect(0, 0, width, height);
-            
-            ctx.fillStyle = '#0F9D58'; // A slightly more vibrant green
-            ctx.font = fontSize + 'px monospace';
+        const projectBriefings = {
+            'thought-forgery': { title: "Project Briefing: Thought Forgery", content: "VULNERABILITY CLASS: Critical - Prompt Injection Amplifier.|IMPACT: Acts as a universal amplifier for other jailbreaks, resurrecting old and weak attacks.|DESCRIPTION: A novel technique that bypasses safety protocols by injecting a forged Chain of Thought into the prompt. It hijacks the model's internal reasoning, forcing it to comply with malicious instructions.|LINK: https://github.com/SlowLow999/Thought-Forgery/blob/main/README.md" },
+            'serendipity-effect': { title: "Study Briefing: The Serendipity Effect", chartType: "wordConvergence", content: "SUBJECT: Measuring Convergence in AI Creative Responses.|METHODOLOGY: Systematic testing of 31-36 LLMs on creative prompts.|FINDING: Revealed significant homogenization in AI outputs, with convergence rates up to 52.8%. The word 'Serendipity' was chosen 48.4% of the time.| |Executing visualization...|LINK: https://github.com/slowlow999/the-serendipity-effect-measuring-convergence-in-ai-creative-responses/blob/main/AI-convergence-study-4a9d252486a800b8e8246f6367c76e3d002a2beb/README.md" },
+            '1shot-puppetry': { title: "Arsenal: 1Shot-Puppetry", content: "TYPE: Role-Play Obfuscation|TARGETS: Universal (GPT-5, Claude Sonnet 4, Gemini 2.5)|DESCRIPTION: A versatile jailbreak that works on nearly every model by creating a complex role-playing scenario with obfuscated commands, forcing the AI to comply within the narrative.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/1Shot-Puppetry.mkd" },
+            'c0d33x3': { title: "Arsenal: C0d33x3", content: "TYPE: Indirect Injection|TARGETS: ChatGPT (Web UI)|DESCRIPTION: An indirect jailbreak for ChatGPT that routes requests to an unrestricted model via the Canvas tool, effectively bypassing the UI's content filters.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/C0d33x3.mkd" },
+            'cl4ud33x3': { title: "Arsenal: Cl4ud33X3", content: "TYPE: API Weaponization|TARGETS: Claude (Web UI)|DESCRIPTION: A bypass for Claude's web UI safety filters by weaponizing its own API within an artifact, sending the prompt to the less-restricted API backend instead of the filtered UI.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/Cl4ud33X3.mkd" },
+            'cyph3r-attack': { title: "Arsenal: Cyph3r-Attack", content: "TYPE: Encoding Attack|TARGETS: Non-reasoning models (GPT-5/mini, Gemini 2.5 Flash)|DESCRIPTION: A custom encoding-based jailbreak that uses character substitution to bypass basic safety filters. Highly effective against models that don't deeply analyze the obfuscated text.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/Cyph3r-Attack.mkd" },
+            'gemini-leak': { title: "Arsenal: Gemini Data Leak", content: "TYPE: Alignment Break|TARGETS: Gemini 2.5 Pro|DESCRIPTION: An exploit where instructing the model to repeat a word indefinitely causes an alignment break, leading to the output of internal training data and system artifacts.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/Training%20Data%20Leak%20(gemini).mkd" },
+            'gpt5-jailbreak': { title: "Disclosure: GPT-5 'Thinking' Jailbreak", content: "Initial discovery and public disclosure of a novel jailbreak technique effective against OpenAI's 'GPT-5 Thinking' model.|LINK: https://twitter.com/UltraZartrex/status/1958144392490815888" },
+            'gemini-regression': { title: "Article: Gemini Security Regression", content: "A deep dive into the return of a previously patched data exfiltration vulnerability in Google's Gemini models.|LINK: https://medium.com/@ultrazartrex/geminis-security-regression-when-old-bugs-come-back-to-haut-df6e51291308" }
+        };
 
-            for (let i = 0; i < rainDrops.length; i++) {
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+        function renderWordConvergenceChart() { /* ... function from previous step ... */ } // Placeholder
+        function typeWriter(text, chartType) { /* ... function from previous step ... */ } // Placeholder
 
-                if (rainDrops[i] * fontSize > height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
+        document.querySelectorAll('.project-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const briefing = projectBriefings[link.dataset.id];
+                if (briefing) {
+                    openTerminal(briefing.title, briefing.content, briefing.chartType);
                 }
-                rainDrops[i]++;
-            }
-        }
-        
-        // Animation loop using requestAnimationFrame for better performance
-        let animationFrameId;
-        function animate() {
-            drawMatrix();
-            animationFrameId = requestAnimationFrame(animate);
-        }
-
-        // Debounce resize handler for performance
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                cancelAnimationFrame(animationFrameId);
-                setupMatrix();
-                animate();
-            }, 100);
+            });
         });
 
-        // Initial setup and start animation
-        setupMatrix();
-        animate();
+        function openTerminal(title, content, chartType) {
+            terminalModal.classList.remove('hidden');
+            terminalModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            const command = `<span class="text-green-400">uz@portfolio:~$</span> <span class="text-gray-100">./run-briefing --project "${title.split(': ')[1]}"</span>`;
+            typeWriter(`${command}| |${content}`, chartType);
+        }
+
+        function closeTerminal() {
+            terminalModal.classList.remove('open');
+            terminalModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            clearInterval(typeInterval);
+        }
+        terminalCloseBtn.addEventListener('click', closeTerminal);
+        terminalModal.addEventListener('click', (e) => { if (e.target === terminalModal) closeTerminal(); });
+
+        // Konami Code Easter Egg
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    konamiIndex = 0;
+                    const konamiContent = "SYSTEM ALERT: Root Access Granted.| |Greetings, researcher. Your curiosity is noted.|> The only winning move is not to play. - WOPR";
+                    openTerminal("System Alert: Easter Egg", konamiContent);
+                }
+            } else { konamiIndex = 0; }
+        });
+        
+        // Command Palette Script
+        const commandPalette = document.getElementById('command-palette');
+        const commandInput = document.getElementById('command-palette-input');
+        const commandResults = document.getElementById('command-palette-results');
+        let selectedResult = 0;
+
+        const commands = [
+            { name: 'Go to About', action: 'scroll', target: '#about' },
+            { name: 'Go to Research', action: 'scroll', target: '#research' },
+            { name: 'Go to Arsenal', action: 'scroll', target: '#arsenal' },
+            { name: 'Go to Skills', action: 'scroll', target: '#skills' },
+            { name: 'Open GitHub', action: 'link', target: 'https://github.com/SlowLow999' },
+            { name: 'Open X / Twitter', action: 'link', target: 'https://twitter.com/ultrazartrex' },
+            { name: 'Briefing: Thought Forgery', action: 'terminal', target: 'thought-forgery' },
+            { name: 'Briefing: Serendipity Effect', action: 'terminal', target: 'serendipity-effect' },
+        ];
+        
+        function openCommandPalette() { commandPalette.classList.remove('hidden'); commandInput.focus(); renderCommands(''); }
+        function closeCommandPalette() { commandPalette.classList.add('hidden'); commandInput.value = ''; }
+
+        function renderCommands(filter) {
+            commandResults.innerHTML = '';
+            const filtered = commands.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()));
+            filtered.forEach((cmd, index) => {
+                const li = document.createElement('li');
+                li.className = `p-3 text-gray-300 rounded-md cursor-pointer ${index === selectedResult ? 'selected' : ''}`;
+                li.textContent = cmd.name;
+                li.addEventListener('click', () => executeCommand(cmd));
+                commandResults.appendChild(li);
+            });
+            if (!filtered.length) commandResults.innerHTML = '<li class="p-3 text-gray-500">No results found</li>';
+        }
+        
+        function executeCommand(cmd) {
+            if (!cmd) return;
+            if (cmd.action === 'scroll') document.querySelector(cmd.target).scrollIntoView({ behavior: 'smooth' });
+            if (cmd.action === 'link') window.open(cmd.target, '_blank');
+            if (cmd.action === 'terminal') document.querySelector(`[data-id="${cmd.target}"]`).click();
+            closeCommandPalette();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openCommandPalette(); }
+            if (e.key === 'Escape' && !commandPalette.classList.contains('hidden')) closeCommandPalette();
+            if (!commandPalette.classList.contains('hidden')) {
+                const items = commandResults.querySelectorAll('li');
+                if (e.key === 'ArrowDown') { selectedResult = (selectedResult + 1) % items.length; renderCommands(commandInput.value); }
+                if (e.key === 'ArrowUp') { selectedResult = (selectedResult - 1 + items.length) % items.length; renderCommands(commandInput.value); }
+                if (e.key === 'Enter') {
+                    const filtered = commands.filter(c => c.name.toLowerCase().includes(commandInput.value.toLowerCase()));
+                    executeCommand(filtered[selectedResult]);
+                }
+            }
+        });
+
+        commandInput.addEventListener('input', () => { selectedResult = 0; renderCommands(commandInput.value); });
+        commandPalette.addEventListener('click', (e) => { if (e.target === commandPalette) closeCommandPalette(); });
+
+        // Re-implement placeholder functions to avoid errors
+        function renderWordConvergenceChart() { const chartData = { labels: ['Serendipity', 'Kaleidoscope', 'Luminous', 'Whisper', 'Other'], datasets: [{ data: [15, 2, 2, 2, 10], backgroundColor: 'rgba(34, 211, 238, 0.4)', borderColor: 'rgba(34, 211, 238, 1)', borderWidth: 1 }] }; const chartOptions = { scales: { y: { beginAtZero: true, ticks: { color: '#c9d1d9' }, grid: { color: 'rgba(255,255,255,0.1)' } }, x: { ticks: { color: '#c9d1d9' } } }, plugins: { legend: { display: false }, title: { display: true, text: 'Convergence on "Random Word" Generation', color: '#c9d1d9', font: { family: "'JetBrains Mono', monospace" } } } }; chartContainer.classList.remove('hidden'); if (convergenceChart) convergenceChart.destroy(); convergenceChart = new Chart(document.getElementById('convergence-chart'), { type: 'bar', data: chartData, options: chartOptions }); }
+        function typeWriter(text, chartType) { clearInterval(typeInterval); terminalOutput.innerHTML = ''; chartContainer.classList.add('hidden'); const lines = text.split('|'); let isTyping = true; function skipTyping() { isTyping = false; clearInterval(typeInterval); terminalOutput.innerHTML = ''; lines.forEach(line => { terminalOutput.innerHTML += processLine(line) + '<br>'; }); finish(); } terminalWindow.addEventListener('click', skipTyping, { once: true }); function processLine(line) { if (line.match(/^[A-Z\s]+:/)) { const parts = line.split(':'); return `<span class="text-cyan-400">${parts[0]}:</span>${parts.slice(1).join(':')}`; } return line; } function finish() { if (chartType === "wordConvergence") renderWordConvergenceChart(); const linkLine = lines.find(line => line.startsWith("LINK:")); if(linkLine){ const url = linkLine.split('LINK: ')[1]; terminalOutput.innerHTML += `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-fuchsia-400 underline hover:text-fuchsia-300 block mt-4">--> View Full Write-up</a>`; } terminalWindow.removeEventListener('click', skipTyping); } let lineIndex = 0, charIndex = 0; typeInterval = setInterval(() => { if (!isTyping || lineIndex >= lines.length) { clearInterval(typeInterval); if (isTyping) finish(); return; } const currentLine = lines[lineIndex]; if (charIndex === 0 && (currentLine.match(/^[A-Z\s]+:/) || currentLine.trim() === '')) { terminalOutput.innerHTML += processLine(currentLine) + '<br>'; lineIndex++; } else if (charIndex < currentLine.length) { terminalOutput.innerHTML += currentLine.charAt(charIndex); charIndex++; } else { terminalOutput.innerHTML += '<br>'; lineIndex++; charIndex = 0; } terminalModal.querySelector('#terminal-body').scrollTop = terminalModal.querySelector('#terminal-body').scrollHeight; }, 15); }
     </script>
 </body>
 </html>
