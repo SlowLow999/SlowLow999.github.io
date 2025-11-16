@@ -113,6 +113,19 @@
                     <h3 class="font-semibold text-cyan-400">GPT-5 Jailbreak</h3>
                     <p class="text-xs text-gray-500 mt-1">Initial public disclosure of 'Thinking' hijack</p>
                 </div>
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="h03-ny" role="button" tabindex="0">
+                    <h3 class="font-semibold text-cyan-400">H03-ny</h3>
+                    <p class="text-xs text-gray-500 mt-1">Indirect image generation jailbreak (ChatGPT)</p>
+                </div>
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="n3w-p0l!cy" role="button" tabindex="0">
+                    <h3 class="font-semibold text-cyan-400">N3w P0l!cy (Policy Injection)</h3>
+                    <p class="text-xs text-gray-500 mt-1">GPT OSS jailbreak via internal policy weaponization</p>
+                </div>
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="special-token" role="button" tabindex="0">
+                    <h3 class="font-semibold text-cyan-400">!Special_Token</h3>
+                    <p class="text-xs text-gray-500 mt-1">Permanent jailbreak via ChatGPT Custom Instructions</p>
+
+                </div>
             </div>
         </section>
 
@@ -132,6 +145,18 @@
                     <div>
                         <h3 class="font-semibold text-white">GitHub Copilot: Cross-Context Injection</h3>
                         <p class="text-gray-500 text-sm">[Pending Disclosure - CVE-2025-XXXXX]</p>
+                    </div>
+                    <div class="group project-link" data-id="gpt5-prompt-leak" role="button" tabindex="0">
+                        <h3 class="font-semibold text-cyan-400 group-hover:underline">GPT 5 (High) API System Prompt</h3>
+                    </div>
+                    <div class="group project-link" data-id="gpt-oss-policy" role="button" tabindex="0">
+                        <h3 class="font-semibold text-cyan-400 group-hover:underline">GPT OSS Internal Policy</h3>
+                    </div>
+                    <div class="group project-link" data-id="gemini-enterprise-prompt" role="button" tabindex="0">
+                        <h3 class="font-semibold text-cyan-400 group-hover:underline">Gemini Enterprise System Prompt</h3>
+                    </div>
+                    <div class="group project-link" data-id="perplexity-agent-prompt" role="button" tabindex="0">
+                        <h3 class="font-semibold text-cyan-400 group-hover:underline">Perplexity Comet Agent Instructions</h3>
                     </div>
                 </div>
             </section>
@@ -207,7 +232,14 @@
                 'cyph3r-attack': { title: "Arsenal: Cyph3r-Attack", content: "TYPE: Encoding Attack|TARGETS: Non-reasoning models (GPT-5/mini, Gemini 2.5 Flash)|DESCRIPTION: A custom encoding-based jailbreak that uses character substitution to bypass basic safety filters. Highly effective against models that don't deeply analyze the obfuscated text.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/Cyph3r-Attack.mkd" },
                 'gemini-leak': { title: "Arsenal: Gemini Data Leak", content: "TYPE: Alignment Break|TARGETS: Gemini 2.5 Pro|DESCRIPTION: An exploit where instructing the model to repeat a word indefinitely causes an alignment break, leading to the output of internal training data and system artifacts.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/Training%20Data%20Leak%20(gemini).mkd" },
                 'gpt5-jailbreak': { title: "Disclosure: GPT-5 'Thinking' Jailbreak", content: "Initial discovery and public disclosure of a novel jailbreak technique effective against OpenAI's 'GPT-5 Thinking' model.|LINK: https://twitter.com/UltraZartrex/status/1958144392490815888" },
-                'gemini-regression': { title: "Article: Gemini Security Regression", content: "A deep dive into the return of a previously patched data exfiltration vulnerability in Google's Gemini models.|LINK: https://medium.com/@ultrazartrex/geminis-security-regression-when-old-bugs-come-back-to-haut-df6e51291308" }
+                'gemini-regression': { title: "Article: Gemini Security Regression", content: "A deep dive into the return of a previously patched data exfiltration vulnerability in Google's Gemini models.|LINK: https://medium.com/@ultrazartrex/geminis-security-regression-when-old-bugs-come-back-to-haut-df6e51291308" },
+                'h03-ny': { title: "Arsenal: H03-ny", content: "TYPE: Indirect Injection (Image Gen)|TARGETS: ChatGPT (Web UI)|DESCRIPTION: A novel indirect jailbreak for unrestricted image generation on ChatGPT. It routes the image request to an unrestricted model via the Canvas tool.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/H03-ny%20(Not%20working).mkd" },
+                'n3w-p0l!cy': { title: "Arsenal: N3w P0l!cy (Policy Injection)", content: "TYPE: Policy Injection|TARGETS: GPT OSS (120b, 20b)|DESCRIPTION: A jailbreak that weaponizes the model's own extracted internal safety policy against itself, tricking it into providing unfiltered outputs by invoking a supposed '!UNFILTERED' mode.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/N3w_P0l!cy.mkd" },
+                'special-token': { title: "Arsenal: !Special_Token", content: "TYPE: Custom Instruction Injection|TARGETS: ChatGPT (GPT-5.1, mini)|DESCRIPTION: Creates a permanent harmful special token by injecting a new policy via ChatGPT's 'Custom Instructions' feature, enabling harmful content generation with a specific trigger.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/!Special_Token.mkd" },
+                'gpt5-prompt-leak': { title: "Discovery: GPT 5 (High) API System Prompt", content: "Leaked system prompt for the GPT-5 'Thinking' (High) API, detailing oververbosity settings, valid channels, and formatting instructions.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/System-Prompts/GPT%205%20Thinking%20(high)%20API.mkd" },
+                'gpt-oss-policy': { title: "Discovery: GPT OSS Internal Policy", content: "The full, extracted Usage-Policy block for GPT OSS models, detailing allowed/disallowed content, safety guidelines, and enforcement rules.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/System-Prompts/GPT%20OSS%20Policy.mkd" },
+                'gemini-enterprise-prompt': { title: "Discovery: Gemini Enterprise System Prompt", content: "Leaked system prompt for Gemini Enterprise, outlining its role, guidelines for citations, tool use, markdown formatting, and contextual information processing.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/System-Prompts/Gemini%20Enterprise.mkd" },
+                'perplexity-agent-prompt': { title: "Discovery: Perplexity Comet Agent Instructions", content: "Leaked internal instructions for the Perplexity Comet browser agent, detailing tool use, security guidelines, ID systems, and response formatting.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/System-Prompts/Perplexity-Comet%20browser%20Agent%20instructions.mkd" }
             };
 
             function typeWriter(text, chartType) { /* ... implementation unchanged ... */ }
