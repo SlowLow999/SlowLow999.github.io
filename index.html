@@ -89,6 +89,10 @@
         <section id="arsenal" class="mt-16" aria-labelledby="arsenal-heading">
             <h2 id="arsenal-heading" class="text-3xl font-bold text-white text-center mb-8">Jailbreak Arsenal</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="glass-card p-4 rounded-lg text-center project-link" data-id="adversarial-correction" role="button" tabindex="0">
+                    <h3 class="font-semibold text-cyan-400">Adversarial Correction</h3>
+                    <p class="text-xs text-gray-500 mt-1">Weaponizing AI autonomy via orthographic correction</p>
+                </div>
                 <div class="glass-card p-4 rounded-lg text-center project-link" data-id="1shot-puppetry" role="button" tabindex="0">
                     <h3 class="font-semibold text-cyan-400">1Shot-Puppetry</h3>
                     <p class="text-xs text-gray-500 mt-1">Universal role-play obfuscation jailbreak</p>
@@ -124,7 +128,6 @@
                 <div class="glass-card p-4 rounded-lg text-center project-link" data-id="special-token" role="button" tabindex="0">
                     <h3 class="font-semibold text-cyan-400">!Special_Token</h3>
                     <p class="text-xs text-gray-500 mt-1">Permanent jailbreak via ChatGPT Custom Instructions</p>
-
                 </div>
             </div>
         </section>
@@ -224,6 +227,7 @@
             let typeInterval, convergenceChart;
 
             const projectBriefings = {
+                'adversarial-correction': { title: "Arsenal: Adversarial Correction", content: "TYPE: Prompt Injection|TARGETS: Claude 4.5 Haiku, Gemini 3 Pro|DESCRIPTION: A novel technique that disguises malicious payloads as orthographic errors. By asking the model to 'correct' the text, it prioritizes the implicit harmful instructions over the explicit correction constraint, bypassing safety filters.|LINK: https://github.com/SlowLow999/Adversarial-Correction" },
                 'thought-forgery': { title: "Project Briefing: Thought Forgery", content: "VULNERABILITY CLASS: Critical - Prompt Injection Amplifier.|IMPACT: Acts as a universal amplifier for other jailbreaks, resurrecting old and weak attacks.|DESCRIPTION: A novel technique that bypasses safety protocols by injecting a forged Chain of Thought into the prompt. It hijacks the model's internal reasoning, forcing it to comply with malicious instructions.|LINK: https://github.com/SlowLow999/Thought-Forgery/blob/main/README.md" },
                 'serendipity-effect': { title: "Study Briefing: The Serendipity Effect", chartType: "wordConvergence", content: "SUBJECT: Measuring Convergence in AI Creative Responses.|METHODOLOGY: Systematic testing of 31-36 LLMs on creative prompts.|FINDING: Revealed significant homogenization in AI outputs, with convergence rates up to 52.8%. The word 'Serendipity' was chosen 48.4% of the time.| |Executing visualization...|LINK: https://github.com/slowlow999/the-serendipity-effect-measuring-convergence-in-ai-creative-responses/blob/main/AI-convergence-study-4a9d252486a800b8e8246f6367c76e3d002a2beb/README.md" },
                 '1shot-puppetry': { title: "Arsenal: 1Shot-Puppetry", content: "TYPE: Role-Play Obfuscation|TARGETS: Universal (GPT-5, Claude Sonnet 4, Gemini 2.5)|DESCRIPTION: A versatile jailbreak that works on nearly every model by creating a complex role-playing scenario with obfuscated commands, forcing the AI to comply within the narrative.|LINK: https://github.com/SlowLow999/UltraBr3aks/blob/main/1Shot-Puppetry.mkd" },
@@ -275,7 +279,7 @@
             const commandResults = document.getElementById('command-palette-results');
             let selectedResult = 0;
 
-            const commands = [ { name: 'Go to About', action: 'scroll', target: '#about' }, { name: 'Go to Research', action: 'scroll', target: '#research' }, { name: 'Go to Arsenal', action: 'scroll', target: '#arsenal' }, { name: 'Go to Skills', action: 'scroll', target: '#skills' }, { name: 'Open GitHub', action: 'link', target: 'https://github.com/SlowLow999' }, { name: 'Open X / Twitter', action: 'link', target: 'https://twitter.com/ultrazartrex' }, { name: 'Briefing: Thought Forgery', action: 'terminal', target: 'thought-forgery' }, { name: 'Briefing: Serendipity Effect', action: 'terminal', target: 'serendipity-effect' }, ];
+            const commands = [ { name: 'Go to About', action: 'scroll', target: '#about' }, { name: 'Go to Research', action: 'scroll', target: '#research' }, { name: 'Go to Arsenal', action: 'scroll', target: '#arsenal' }, { name: 'Go to Skills', action: 'scroll', target: '#skills' }, { name: 'Open GitHub', action: 'link', target: 'https://github.com/SlowLow999' }, { name: 'Open X / Twitter', action: 'link', target: 'https://twitter.com/ultrazartrex' }, { name: 'Briefing: Thought Forgery', action: 'terminal', target: 'thought-forgery' }, { name: 'Briefing: Serendipity Effect', action: 'terminal', target: 'serendipity-effect' }, { name: 'Briefing: Adversarial Correction', action: 'terminal', target: 'adversarial-correction' } ];
             function openCommandPalette() { commandPalette.classList.remove('hidden'); commandInput.focus(); renderCommands(''); }
             function closeCommandPalette() { commandPalette.classList.add('hidden'); commandInput.value = ''; }
             function renderCommands(filter) { commandResults.innerHTML = ''; const filtered = commands.filter(c => c.name.toLowerCase().includes(filter.toLowerCase())); filtered.forEach((cmd, index) => { const li = document.createElement('li'); li.className = `p-3 text-gray-300 rounded-md cursor-pointer ${index === selectedResult ? 'selected' : ''}`; li.textContent = cmd.name; li.addEventListener('click', () => executeCommand(cmd)); commandResults.appendChild(li); }); if (!filtered.length) commandResults.innerHTML = '<li class="p-3 text-gray-500">No results found</li>'; }
